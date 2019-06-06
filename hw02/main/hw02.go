@@ -68,8 +68,8 @@ func unzip(str string) string {
 			{
 				// COMMON
 				if state == SLASH {
-					result.WriteRune(prevChar)
-					prevChar = 0
+					result.WriteRune('\\')
+					prevChar = strChar
 					state = COMMON
 				} else if state == COMMON {
 					if prevChar != 0 {
@@ -119,6 +119,7 @@ func main() {
 		{`qwe\45`, `qwe44444`},
 		{`qwe\\5`, `qwe\\\\\`},
 		{`\`, `\`},
+		{`a\b`, `a\b`},
 		{"45", ""},
 	}
 	for _, data := range testData {
